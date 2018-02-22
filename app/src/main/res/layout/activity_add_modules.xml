@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/rel"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="#FFC107"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              xmlns:tools="http://schemas.android.com/tools"
+
+>
+    <Button
+            android:text="Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/button12"
+            android:layout_marginTop="520dp"
+            android:layout_marginStart="135dp"
+
+    />
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                  android:id="@+id/destination_layout"
+                  android:layout_width="fill_parent"
+                  android:layout_height="fill_parent"
+                  android:background="#FFC107"
+                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:orientation="vertical"
+                  xmlns:tools="http://schemas.android.com/tools"
+
+>
+
+    <!-- The actual layout for the destination Activity Goes here -->
+
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    </LinearLayout>
+</RelativeLayout>
