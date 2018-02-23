@@ -107,14 +107,6 @@ public class ProfileCreation extends AppCompatActivity  implements MainFragment.
         startActivity(new Intent(ProfileCreation.this, MainActivity.class));
     }
 
-    public void Delete(View v){
-        File mydir = getFilesDir(); //get your internal directory
-        File myFile = new File(mydir.toString(), textmsg.getText().toString());
-        Log.d("path",myFile.toString());
-        myFile.delete();
-
-    }
-
     @Override
     public void onListItemClick(int position) {
         Fragment fragment = null;

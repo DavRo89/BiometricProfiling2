@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.RequiresApi;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -20,9 +22,12 @@ import java.util.List;
  *
  */
 public class MainFragment extends ListFragment {
-    private final List<String> names = new ArrayList<>();
+    private  List<String> names = new ArrayList<>();
     ListView lv;
     private String Profileclick;
+   private ArrayAdapter<String> adapter;
+    private List<String> items;
+    private int posizione;
     public interface OnListItemClickListener {
         void onListItemClick(int position);
     }
@@ -48,11 +53,11 @@ public class MainFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         Log.d("dentro","va");
         Bundle args = getArguments();
-        final List<String> names= args.getStringArrayList("nomiB");
+          names= args.getStringArrayList("nomiB");
 
 
-        final List<String> items = names;
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(),
+          items = names;
+        adapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, items);
         setListAdapter(adapter);
 lv=getListView();
@@ -64,6 +69,8 @@ lv.setOnCreateContextMenuListener(new AdapterView.OnCreateContextMenuListener(){
 
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)contextMenuInfo;
         contextMenu.setHeaderTitle(names.get(info.position));
+        posizione=info.position;
+        Log.d("posizione", ""+posizione);
         Profileclick=names.get(info.position);
             String[] menuItems = getResources().getStringArray(R.array.actions);
             for (int i = 0; i<menuItems.length; i++) {
@@ -79,10 +86,10 @@ lv.setOnCreateContextMenuListener(new AdapterView.OnCreateContextMenuListener(){
 
 
     }
-
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         mItemClickListener.onListItemClick(position);
+
     }
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -92,6 +99,16 @@ lv.setOnCreateContextMenuListener(new AdapterView.OnCreateContextMenuListener(){
                File myFile = new File(mydir.toString(), Profileclick);
                 Log.d("path", Profileclick);
                 myFile.delete();
+
+
+
+                items=names;
+                Log.d("items",""+items.size());
+                lv=getListView();
+adapter.remove(adapter.getItem(posizione));
+                adapter.notifyDataSetChanged();
+
+
 
                 return true;
             case 1:
