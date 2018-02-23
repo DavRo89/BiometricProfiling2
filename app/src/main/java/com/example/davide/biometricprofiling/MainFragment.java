@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,6 +22,7 @@ import java.util.List;
 public class MainFragment extends ListFragment {
     private final List<String> names = new ArrayList<>();
     ListView lv;
+    private String Profileclick;
     public interface OnListItemClickListener {
         void onListItemClick(int position);
     }
@@ -62,6 +64,7 @@ lv.setOnCreateContextMenuListener(new AdapterView.OnCreateContextMenuListener(){
 
             AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)contextMenuInfo;
         contextMenu.setHeaderTitle(names.get(info.position));
+        Profileclick=names.get(info.position);
             String[] menuItems = getResources().getStringArray(R.array.actions);
             for (int i = 0; i<menuItems.length; i++) {
                 contextMenu.add(Menu.NONE, i, i, menuItems[i]);
@@ -75,14 +78,6 @@ lv.setOnCreateContextMenuListener(new AdapterView.OnCreateContextMenuListener(){
 });
 
 
-
-
-
-
-
-
-
-
     }
 
     @Override
@@ -92,7 +87,12 @@ lv.setOnCreateContextMenuListener(new AdapterView.OnCreateContextMenuListener(){
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 0:
-                Log.d("context menu","va");
+
+                File mydir = getContext().getFilesDir(); //get your internal directory
+               File myFile = new File(mydir.toString(), Profileclick);
+                Log.d("path", Profileclick);
+                myFile.delete();
+
                 return true;
             case 1:
                 // your second action code
