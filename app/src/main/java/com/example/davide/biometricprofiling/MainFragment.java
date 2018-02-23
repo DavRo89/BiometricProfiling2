@@ -97,13 +97,8 @@ lv.setOnCreateContextMenuListener(new AdapterView.OnCreateContextMenuListener(){
 
                 File mydir = getContext().getFilesDir(); //get your internal directory
                File myFile = new File(mydir.toString(), Profileclick);
-                Log.d("path", Profileclick);
                 myFile.delete();
-
-
-
                 items=names;
-                Log.d("items",""+items.size());
                 lv=getListView();
 adapter.remove(adapter.getItem(posizione));
                 adapter.notifyDataSetChanged();

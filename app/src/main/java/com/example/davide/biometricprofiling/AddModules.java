@@ -22,6 +22,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AddModules extends AppCompatActivity {
     LinearLayout   destinationFrameLayout=null;
@@ -69,6 +71,7 @@ private int counter;
         Log.d("Classi", Classes.toString());
         Log.d("Classi",  ""+Classes.size());
         final LinearLayout parentLayout = (LinearLayout) findViewById(R.id.destination_layout);
+        parentLayout.setVisibility(View.VISIBLE);
         final SharedPreferences sp = getApplicationContext().getSharedPreferences("ClassiAdd", MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         for (int i = 0; i < Classes.size(); i++) {
@@ -85,7 +88,15 @@ private int counter;
         }
         String ProfileValue3 = (""+( sp.getString("Classi", "")));
         Log.d("ProfiliPerAdd",ProfileValue3);
-
+        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+        );
+        Button buttonView = new Button(this);
+        buttonView.setText("save");
+        buttonView.setOnClickListener(mThisButtonListener);
+        parentLayout.addView(buttonView, p);
+/*
         Button btn12 = (Button)findViewById(R.id.button12);
     //    final Button btn = (Button) findViewById(R.id.button1);
 
@@ -132,7 +143,7 @@ if(counter==0){
 
             }
         });
-
+*/
     }
 
     private void circularRevealTransition() {
@@ -169,5 +180,56 @@ public void AppendFile(String ClassiAdd) {
     }
 }
 
+    private View.OnClickListener mThisButtonListener = new View.OnClickListener() {
+        public void onClick(View v) {
 
+
+            counter=0;
+            for(int i = 0; i < Classes.size(); i++){
+                if(checkB[i].isChecked()){
+                    counter++;
+                    Log.d("checkbox",""+checkB[i].getText().toString());
+
+
+
+
+                        AddClasses.add(checkB[i].getText().toString());
+
+                    startActivity(new Intent(AddModules.this, ProfileManager.class));
+                    //  Log.d("scripts",""+ProfileManager.scripts.add(checkB[i].getText().toString()));
+
+
+                }
+            }
+            if(counter==0){
+
+                AlertDialog alertDialog = new AlertDialog.Builder(AddModules.this).create();
+                alertDialog.setTitle("Alert");
+                alertDialog.setMessage("Nessun Modulo Selezionato");
+                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "ok",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+
+                            }
+                        });
+                alertDialog.show();
+            }
+            else{
+                try {
+                    obj.put("Moduli", AddClasses);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    AppendFile(obj.getString("Moduli"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+
+        }
+    };
 }
