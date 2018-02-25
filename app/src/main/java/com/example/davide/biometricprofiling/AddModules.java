@@ -236,6 +236,8 @@ public void AppendFile(String ClassiAdd) {
                 }
                 try {
                     AppendFile(obj.getString("Moduli"));
+                    Toast.makeText(getBaseContext(), "Modules successfully added!",
+                            Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -26,7 +26,7 @@ import android.os.Bundle;
  */
 
 
-import android.support.design.widget.FloatingActionButton;
+
 import android.support.v4.app.Fragment;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -34,6 +34,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -63,7 +65,9 @@ private  String nomeProfilo;
 public static String profiloSelezionato;
    private  List<String> Biom=new ArrayList<String>();//lista biometrie del profilo letto
 
-   private FloatingActionButton menuMultipleActions;
+   private FloatingActionMenu menuMultipleActions;
+    private FloatingActionButton menuMultipleActions2, saved;
+
     public ShapeDrawable drawable;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,11 +110,26 @@ public static String profiloSelezionato;
     public void onListItemClick(int position) {
         Fragment fragment = null;
 indiceAssoluto=position;
-        menuMultipleActions = (FloatingActionButton) findViewById(R.id.multiple_actions);
+        menuMultipleActions = (FloatingActionMenu) findViewById(R.id.fabbbb);
+        menuMultipleActions2=(FloatingActionButton) findViewById(R.id.multiple_actions);
         menuMultipleActions.setVisibility(View.VISIBLE);
-        Button btn2 = (Button)findViewById(R.id.button4);
-        btn2.setVisibility(View.VISIBLE);
-     menuMultipleActions.setOnClickListener(new View.OnClickListener() {
+
+        saved=(FloatingActionButton) findViewById(R.id.saved);
+        saved.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                try {
+                    Savez(findViewById(R.id.saved));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+
+
+     menuMultipleActions2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -225,7 +244,7 @@ collection.addAll(getProfiles.getProfiliList());
     }
 
     public void Savez(View v) throws JSONException {
-
+if(Biom.size()!=0){
         obj.put("Sessione", Biom);
        Log.d("biom", Biom.get(0));
        System.out.println(obj);
@@ -242,6 +261,13 @@ collection.addAll(getProfiles.getProfiliList());
         }
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+    else{
+    Toast.makeText(getBaseContext(), "No changes!",
+            Toast.LENGTH_SHORT).show();
+
+}
+
     }
 
 

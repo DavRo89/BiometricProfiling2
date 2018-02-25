@@ -27,7 +27,7 @@ dependencies {
     })
 
 
-
+    compile 'com.github.clans:fab:1.6.4'
     compile 'com.android.support:design:22.2.1'
     compile 'com.android.support:recyclerview-v7:22.2.1'
     compile 'com.android.support:appcompat-v7:25.3.1'
