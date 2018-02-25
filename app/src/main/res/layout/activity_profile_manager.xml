@@ -44,8 +44,8 @@
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            fab:menu_colorNormal="@color/teal_200"
-            fab:menu_colorPressed="@color/teal_500"
+            fab:menu_colorNormal="@color/teal_500"
+            fab:menu_colorPressed="@color/teal_700"
             fab:menu_colorRipple="@color/teal_900"
     android:visibility="gone"
 
@@ -54,8 +54,8 @@
             android:id="@+id/multiple_actions"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            fab:fab_colorNormal="@color/teal_200"
-            fab:fab_colorPressed="@color/teal_500"
+            fab:fab_colorNormal="@color/teal_500"
+            fab:fab_colorPressed="@color/teal_700"
             fab:fab_colorRipple="@color/teal_900"
             fab:fab_size="mini"
             fab:fab_label="Add" />
@@ -63,8 +63,8 @@
                 android:id="@+id/saved"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                fab:fab_colorNormal="@color/teal_200"
-                fab:fab_colorPressed="@color/teal_500"
+                fab:fab_colorNormal="@color/teal_500"
+                fab:fab_colorPressed="@color/teal_700"
                 fab:fab_colorRipple="@color/teal_900"
                 fab:fab_size="mini"
                 fab:fab_label="Save" />
