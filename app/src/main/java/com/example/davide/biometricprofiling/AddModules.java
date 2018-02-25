@@ -5,14 +5,14 @@ import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewAnimationUtils;
-import android.view.ViewTreeObserver;
+import android.view.*;
 import android.widget.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -71,7 +71,7 @@ private int counter;
         Log.d("Classi", Classes.toString());
         Log.d("Classi",  ""+Classes.size());
         final LinearLayout parentLayout = (LinearLayout) findViewById(R.id.destination_layout);
-        parentLayout.setVisibility(View.VISIBLE);
+
         final SharedPreferences sp = getApplicationContext().getSharedPreferences("ClassiAdd", MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         for (int i = 0; i < Classes.size(); i++) {
@@ -91,11 +91,24 @@ private int counter;
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
+
         );
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
         Button buttonView = new Button(this);
-        buttonView.setText("save");
+        buttonView.setText("Add");
         buttonView.setOnClickListener(mThisButtonListener);
+
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
+        int height = size.y;
+p.topMargin=(height/3)*2;
+
         parentLayout.addView(buttonView, p);
+
 /*
         Button btn12 = (Button)findViewById(R.id.button12);
     //    final Button btn = (Button) findViewById(R.id.button1);
