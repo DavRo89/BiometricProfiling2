@@ -16,12 +16,24 @@
             tools:layout_editor_absoluteY="50dp" tools:layout_editor_absoluteX="80dp"
             android:textIsSelectable="false" android:layout_above="@+id/button3" android:layout_centerHorizontal="true"
             android:layout_marginBottom="70dp"/>
+
+
     <RelativeLayout
             android:id="@+id/content"
             android:layout_marginTop="-135px"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:descendantFocusability="blocksDescendants">
+           >
+
+
+        <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="#DADADC">
+        </View>
+
+
 
         <Button
                 android:text="Cancel"
