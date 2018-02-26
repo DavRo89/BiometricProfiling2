@@ -1,6 +1,7 @@
 package com.example.davide.biometricprofiling;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
@@ -77,5 +78,8 @@ profiles.check( sp.getInt("RdBtn", 0));
 
     }
 
-
+    public void Cancel(View v) {
+        //reading text from file
+        startActivity(new Intent(ProfileSelection.this, MainActivity.class));
+    }
 }

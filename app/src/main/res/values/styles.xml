@@ -21,7 +21,7 @@
         <item name="colorPrimaryDark">@color/primary_dark_material_dark</item>
         <item name="colorControlHighlight">@color/indigo_500</item>
         <item name="colorButtonNormal">@color/teal_500</item>
-
+        <item name="android:windowBackground">@drawable/test2</item>
     </style>
 
 

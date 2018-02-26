@@ -112,54 +112,7 @@ p.topMargin=(height/3)*2;
 
         parentLayout.addView(buttonView, p);
 
-/*
-        Button btn12 = (Button)findViewById(R.id.button12);
-    //    final Button btn = (Button) findViewById(R.id.button1);
 
-        btn12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                counter=0;
-for(int i = 0; i < Classes.size(); i++){
-
-if(checkB[i].isChecked()){
-    counter++;
-    Log.d("checkbox",""+checkB[i].getText().toString());
-    AddClasses.add(checkB[i].getText().toString());
-    startActivity(new Intent(AddModules.this, ProfileManager.class));
-  //  Log.d("scripts",""+ProfileManager.scripts.add(checkB[i].getText().toString()));
-    FragmentManager fragmentManager = getFragmentManager();
-    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-}
-}
-if(counter==0){
-
-    AlertDialog alertDialog = new AlertDialog.Builder(AddModules.this).create();
-    alertDialog.setTitle("Alert");
-    alertDialog.setMessage("Nessun Modulo Selezionato");
-    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "ok",
-            new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int which) {
-                    dialog.dismiss();
-
-                }
-            });
-    alertDialog.show();
-}
-                try {
-                    obj.put("Moduli", AddClasses);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    AppendFile(obj.getString("Moduli"));
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-*/
     }
 
     private void circularRevealTransition() {
@@ -205,9 +158,6 @@ public void AppendFile(String ClassiAdd) {
                 if(checkB[i].isChecked()){
                     counter++;
                     Log.d("checkbox",""+checkB[i].getText().toString());
-
-
-
 
                         AddClasses.add(checkB[i].getText().toString());
 
