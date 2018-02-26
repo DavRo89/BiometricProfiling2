@@ -13,7 +13,7 @@ import android.util.Log;
 import com.example.davide.biometricprofiling.MainActivity;
 
 
-public class PhoneInfo extends AppCompatActivity implements Recognizable  {
+public class Privacy extends AppCompatActivity implements Recognizable  {
     public static int choice=0;
     private  Context sContext;
     private  Activity sActivity;
@@ -21,16 +21,16 @@ public class PhoneInfo extends AppCompatActivity implements Recognizable  {
     private boolean resultValue;
 
 
-    public PhoneInfo(Context context) throws ClassNotFoundException {
+    public Privacy(Context context) throws ClassNotFoundException {
         this.sContext=context;
     }
-    public PhoneInfo(Activity activity) throws ClassNotFoundException {
+    public Privacy(Activity activity) throws ClassNotFoundException {
         this.sActivity=activity;
     }
     @Override
     public void exec()
     {
-    //    PhoneInfo.class.newInstance();
+    //    Privacy.class.newInstance();
         MainActivity.Sync=false;
    Privacy();
    Log.d("Dentro Modulo","Chiama");

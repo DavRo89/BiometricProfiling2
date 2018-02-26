@@ -147,7 +147,7 @@ profileModules.clear();
 
                 for (String stringaN:ModuleClass
                      ) {
-                    //PhoneInfo.class.newInstance();
+                    //Privacy.class.newInstance();
 
 if(Sync){
 
