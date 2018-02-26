@@ -80,7 +80,10 @@ private int counter;
             checkB[i] = new CheckBox(this);
             checkB[i].setId(i);
             checkB[i].setText(" " +Classes.get(i));
+
             parentLayout.addView(checkB[i]);
+            checkB[i].setGravity(17);
+
             edit.putString("Classi",Classes.get(i) );
             edit.commit();
 

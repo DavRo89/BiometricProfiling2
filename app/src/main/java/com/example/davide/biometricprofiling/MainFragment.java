@@ -54,8 +54,8 @@ public class MainFragment extends ListFragment {
         Log.d("dentro","va");
         Bundle args = getArguments();
           names= args.getStringArrayList("nomiB");
-
-
+if(ProfileManager.menuMultipleActions!=null){
+ProfileManager.menuMultipleActions.setVisibility(View.GONE);}
           items = names;
         adapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, items);

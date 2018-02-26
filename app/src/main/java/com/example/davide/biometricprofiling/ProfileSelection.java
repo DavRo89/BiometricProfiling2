@@ -2,9 +2,11 @@ package com.example.davide.biometricprofiling;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
+import android.graphics.Point;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +25,10 @@ private static int RadiobtnCkd;
         RadioGroup profiles = new RadioGroup(this);
         profiles.setOrientation(LinearLayout.VERTICAL);
        final MainActivity leng = new MainActivity();
-
+        Display display = getWindowManager().getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        int width = size.x;
         final SharedPreferences sp = getApplicationContext().getSharedPreferences("profili", MODE_PRIVATE);
 
         for (int i = 0; i < leng.getFileProfili().length; i++) {
@@ -33,6 +38,7 @@ private static int RadiobtnCkd;
             RadioButton radB = new RadioButton(this);
             radB.setId(i);
             radB.setText(" " + leng.getProfiliList().get(i));
+//radB.setX(width/2);
             profiles.addView(radB);
             RadiobtnCkd=i;
 

@@ -65,7 +65,7 @@ private  String nomeProfilo;
 public static String profiloSelezionato;
    private  List<String> Biom=new ArrayList<String>();//lista biometrie del profilo letto
 
-   private FloatingActionMenu menuMultipleActions;
+   public static FloatingActionMenu menuMultipleActions;
     private FloatingActionButton menuMultipleActions2, saved;
 
     public ShapeDrawable drawable;

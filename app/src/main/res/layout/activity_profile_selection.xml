@@ -6,20 +6,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.davide.biometricprofiling.ProfileSelection">
+
     <LinearLayout
             android:id="@+id/check_add_layout"
             android:layout_width="368dp"
-            android:layout_height="wrap_content"
+            android:layout_height="551dp"
+            android:orientation="horizontal" tools:layout_editor_absoluteY="8dp" tools:layout_editor_absoluteX="8dp"
+            android:gravity="top|center"
 
-            android:orientation="horizontal" tools:layout_editor_absoluteY="0dp" tools:layout_editor_absoluteX="8dp">
-        <!--
-            Required to Add CheckBoxes Here Dynamically
-        -->
-    </LinearLayout>
-    <RadioGroup
+
+
+    >
+
+        <RadioGroup
             android:id="@+id/radiogroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" tools:layout_editor_absoluteY="283dp"
-            tools:layout_editor_absoluteX="166dp"/>
+            tools:layout_editor_absoluteX="166dp">
+        <TextView
+                android:id="@+id/textInstrunctions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select a profile:"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:typeface="normal" />
+            <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginBottom="1dp"
+                    android:background="#DADADC">
 
+            </View>
+        </RadioGroup>
+</LinearLayout>
 </android.support.constraint.ConstraintLayout>
