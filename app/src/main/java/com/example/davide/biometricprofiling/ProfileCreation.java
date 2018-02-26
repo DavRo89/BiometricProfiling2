@@ -38,7 +38,7 @@ public class ProfileCreation extends AppCompatActivity  implements MainFragment.
             e.printStackTrace();
         }
 
-      //  prova.getClassesOfPackage("com.");
+      //  DeviceInfo.getClassesOfPackage("com.");
 
         textmsg=(EditText)findViewById(R.id.edit_name);
         if (savedInstanceState == null) {

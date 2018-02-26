@@ -16,18 +16,18 @@ import com.example.davide.biometricprofiling.MainActivity;
 import com.example.davide.biometricprofiling.ProfileCreation;
 
 
-public class  prova extends AppCompatActivity implements Recognizable {
+public class DeviceInfo extends AppCompatActivity implements Recognizable {
     private  Context sContext;
     private  Activity sActivity;
 private boolean isFinished;
     private static int choice=0;
     private boolean resultValue;
 
-    public prova(Context context) throws ClassNotFoundException {
+    public DeviceInfo(Context context) throws ClassNotFoundException {
         this.sContext=context;
     }
 
-    public prova(Activity activity) throws ClassNotFoundException {
+    public DeviceInfo(Activity activity) throws ClassNotFoundException {
 
         this.sActivity=activity;
     }
@@ -36,11 +36,11 @@ private boolean isFinished;
     @Override
     public void exec() {
 MainActivity.Sync=false;
-Privacy();
+DeviceInfo();
        // Log.d("ModuloProva",myDeviceModel2+" "+myDeviceModel3+" "+myDeviceModel4+" "+myDeviceModel5);
         MainActivity.Sync=true;
     }
-    private void Privacy(){
+    private void DeviceInfo(){
         String myDeviceModel = android.os.Build.MODEL;
         String myDeviceModel2= Build.HARDWARE;
         String myDeviceModel3= Build.MANUFACTURER;
