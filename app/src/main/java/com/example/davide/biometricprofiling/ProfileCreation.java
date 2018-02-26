@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import dalvik.system.DexFile;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
@@ -76,6 +77,12 @@ public class ProfileCreation extends AppCompatActivity  implements MainFragment.
         try {
 
             textmsg=(EditText)findViewById(R.id.edit_name);
+String sControl = textmsg.getText().toString();
+            if (sControl.matches("")) {
+                Toast.makeText(this, "You did not enter a name!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            else{
                  obj.put("Sessione", ListaBiom);
 
               Log.d("Json",obj.getString("Sessione"));
@@ -94,11 +101,14 @@ public class ProfileCreation extends AppCompatActivity  implements MainFragment.
             //display file saved message
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
+                startActivity(new Intent(ProfileCreation.this, MainActivity.class));
         }
 
-        startActivity(new Intent(ProfileCreation.this, MainActivity.class));
+
+
+    } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
 
