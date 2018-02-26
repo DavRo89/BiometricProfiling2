@@ -49,7 +49,7 @@ Privacy();
 
         AlertDialog alertDialog = new AlertDialog.Builder(sActivity).create();
         alertDialog.setTitle("Alert");
-        alertDialog.setMessage("Modello: "+myDeviceModel+"\n"+"Hardware: "+myDeviceModel2+"\n"+"Produttore: "+myDeviceModel3+"\n"+"Prdotto: "+myDeviceModel4+"SDK: "+myDeviceModel5);
+        alertDialog.setMessage("Modello: "+myDeviceModel+"\n"+"Hardware: "+myDeviceModel2+"\n"+"Produttore: "+myDeviceModel3+"\n"+"Prodotto: "+myDeviceModel4+"\n"+"SDK: "+myDeviceModel5);
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NON ACCETTO",
                 new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
