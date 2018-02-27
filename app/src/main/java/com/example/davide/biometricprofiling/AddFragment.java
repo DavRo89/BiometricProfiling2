@@ -47,11 +47,9 @@ import java.util.List;
 public class AddFragment extends Fragment implements OnStartDragListener {
 
     private ItemTouchHelper mItemTouchHelper;
-    public List<String> biometricsames=new ArrayList<String>();
-    public List<String> ListaBio=new ArrayList<String>();
+    public List<String> biometricsames = new ArrayList<String>();
+    public List<String> ListaBio = new ArrayList<String>();
     private Context sContext;
-
-
 
 
     public AddFragment() {
@@ -60,7 +58,8 @@ public class AddFragment extends Fragment implements OnStartDragListener {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { Log.d("fragment","siamo nel fragment");
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.d("fragment", "siamo nel fragment");
         return new RecyclerView(container.getContext());
 
     }
@@ -71,7 +70,7 @@ public class AddFragment extends Fragment implements OnStartDragListener {
         super.onViewCreated(view, savedInstanceState);
 
         Bundle args = getArguments();
-        List<String> names= args.getStringArrayList("nomi");
+        List<String> names = args.getStringArrayList("nomi");
         RecyclerListAdapter adapter = new RecyclerListAdapter(getActivity(), this);
 
         RecyclerView recyclerView = (RecyclerView) view;
@@ -82,7 +81,7 @@ public class AddFragment extends Fragment implements OnStartDragListener {
 
         ListaBio.addAll(adapter.getItems());
 
-        if(this.isAdded()) {
+        if (this.isAdded()) {
 
             ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
             mItemTouchHelper = new ItemTouchHelper(callback);
@@ -99,7 +98,6 @@ public class AddFragment extends Fragment implements OnStartDragListener {
 
 
     }
-
 
 
 }

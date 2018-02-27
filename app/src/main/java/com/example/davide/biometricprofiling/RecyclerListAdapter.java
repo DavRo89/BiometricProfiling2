@@ -45,8 +45,6 @@ import com.example.davide.biometricprofiling.R;
 /**
  * Simple RecyclerView.Adapter that implements {@link ItemTouchHelperAdapter} to respond to move and
  * dismiss events from a {@link android.support.v7.widget.helper.ItemTouchHelper}.
- *
- *
  */
 public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapter.ItemViewHolder>
         implements ItemTouchHelperAdapter {
@@ -56,25 +54,23 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
     private final OnStartDragListener mDragStartListener;
     private Context mContext;
 
-    public void setListItems(List<String> names){
+    public void setListItems(List<String> names) {
         mItems.addAll(names);
     }
 
 
-
     public RecyclerListAdapter(Context context, OnStartDragListener dragStartListener) {
         mDragStartListener = dragStartListener;
-        this.mContext=context;
+        this.mContext = context;
     }
-
 
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_main, parent, false);
         ItemViewHolder itemViewHolder = new ItemViewHolder(view);
-        if(mContext instanceof ProfileCreation){
-            ((ProfileCreation)mContext).getList(mItems);
+        if (mContext instanceof ProfileCreation) {
+            ((ProfileCreation) mContext).getList(mItems);
         }
         return itemViewHolder;
     }
@@ -99,15 +95,15 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
     public void onItemDismiss(int position) {
         mItems.remove(position);
         notifyItemRemoved(position);
-        if(mContext instanceof ProfileCreation){
-            ((ProfileCreation)mContext).getList(mItems);
+        if (mContext instanceof ProfileCreation) {
+            ((ProfileCreation) mContext).getList(mItems);
 
         }
-        if(mContext instanceof ProfileManager){
-            ((ProfileManager)mContext).getList(mItems);
+        if (mContext instanceof ProfileManager) {
+            ((ProfileManager) mContext).getList(mItems);
 
         }
-        Log.d("siMuove",mItems.toString());
+        Log.d("siMuove", mItems.toString());
 
 
     }
@@ -117,13 +113,13 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
         Collections.swap(mItems, fromPosition, toPosition);
 
         notifyItemMoved(fromPosition, toPosition);
-        if(mContext instanceof ProfileCreation){
-            ((ProfileCreation)mContext).getList(mItems);
+        if (mContext instanceof ProfileCreation) {
+            ((ProfileCreation) mContext).getList(mItems);
 
         }
 
-        if(mContext instanceof ProfileManager){
-            ((ProfileManager)mContext).getList(mItems);
+        if (mContext instanceof ProfileManager) {
+            ((ProfileManager) mContext).getList(mItems);
 
         }
 
@@ -134,7 +130,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
     public List<String> getItems() {
         Lista.addAll(mItems);
-        return  Lista;
+        return Lista;
 
     }
 
@@ -162,7 +158,7 @@ public class RecyclerListAdapter extends RecyclerView.Adapter<RecyclerListAdapte
 
         @Override
         public void onItemSelected() {
-            itemView.setBackgroundColor(Color.rgb(0,134,139));
+            itemView.setBackgroundColor(Color.rgb(0, 134, 139));
         }
 
         @Override

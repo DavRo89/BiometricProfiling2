@@ -50,31 +50,32 @@ import java.util.List;
 public class ProfileManager extends ActionBarActivity implements MainFragment.OnListItemClickListener {
     private final List<String> mItems = new ArrayList<>();
 
- // public   String bio="";
-  public static   ArrayList<String> scripts = new ArrayList<String>();
+    // public   String bio="";
+    public static ArrayList<String> scripts = new ArrayList<String>();
 
-   private static List<String> collection = new ArrayList<String>();
-    private static   ArrayList<String> ListCollection = new ArrayList<String>();
+    private static List<String> collection = new ArrayList<String>();
+    private static ArrayList<String> ListCollection = new ArrayList<String>();
 
 
-  //  private File[] files2;
+    //  private File[] files2;
 //private List<File> filesNoFolder= new ArrayList<>();
     JSONObject obj = new JSONObject();
-private  String nomeProfilo;
-  private int indiceAssoluto;
-public static String profiloSelezionato;
-   private  List<String> Biom=new ArrayList<String>();//lista biometrie del profilo letto
+    private String nomeProfilo;
+    private int indiceAssoluto;
+    public static String profiloSelezionato;
+    private List<String> Biom = new ArrayList<String>();//lista biometrie del profilo letto
 
-   public static FloatingActionMenu menuMultipleActions;
+    public static FloatingActionMenu menuMultipleActions;
     private FloatingActionButton menuMultipleActions2, saved;
 
     public ShapeDrawable drawable;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_manager);
 
 
-       }
+    }
 
 
     protected void onResume() {
@@ -99,33 +100,33 @@ public static String profiloSelezionato;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-      //  FloatingActionButton btn = (FloatingActionButton) findViewById(R.id.floatingActionButton3);
-       // btn.setImageIcon(R.drawable.ic_add_circle_outline_black_24dp);
+        //  FloatingActionButton btn = (FloatingActionButton) findViewById(R.id.floatingActionButton3);
+        // btn.setImageIcon(R.drawable.ic_add_circle_outline_black_24dp);
         setContentView(R.layout.activity_profile_manager);
-        Toolbar  toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
         setSupportActionBar(toolbar);
 
         // enabling action bar app icon and behaving it as toggle button
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-toolbar.setNavigationOnClickListener(new View.OnClickListener(){
-    @Override
-    public void onClick(View v) {
-        startActivity(new Intent(ProfileManager.this, MainActivity.class));
-    }
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileManager.this, MainActivity.class));
+            }
 
-});
+        });
     }
 
     @Override
     public void onListItemClick(int position) {
         Fragment fragment = null;
-indiceAssoluto=position;
+        indiceAssoluto = position;
         menuMultipleActions = (FloatingActionMenu) findViewById(R.id.fabbbb);
-        menuMultipleActions2=(FloatingActionButton) findViewById(R.id.multiple_actions);
+        menuMultipleActions2 = (FloatingActionButton) findViewById(R.id.multiple_actions);
         menuMultipleActions.setVisibility(View.VISIBLE);
 
-        saved=(FloatingActionButton) findViewById(R.id.saved);
+        saved = (FloatingActionButton) findViewById(R.id.saved);
         saved.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,8 +140,7 @@ indiceAssoluto=position;
         });
 
 
-
-     menuMultipleActions2.setOnClickListener(new View.OnClickListener() {
+        menuMultipleActions2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -165,7 +165,7 @@ indiceAssoluto=position;
             e.printStackTrace();
         }
 
-getFragmentManager().popBackStack();
+        getFragmentManager().popBackStack();
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.content, fragment)
                 .addToBackStack(null)
@@ -174,7 +174,7 @@ getFragmentManager().popBackStack();
 
     public void ReadProfiles(int indice) throws PackageManager.NameNotFoundException, FileNotFoundException {
         BufferedReader reader = null;
-scripts.clear();
+        scripts.clear();
         String[] temp;
         PackageManager m = getPackageManager();
 
@@ -186,17 +186,17 @@ scripts.clear();
             e.printStackTrace();
 
         }
-        s = p.applicationInfo.dataDir+"/files";
+        s = p.applicationInfo.dataDir + "/files";
 
 
         try {
 
-         //   FileInputStream fis = new FileInputStream(files2[(indice)].toString());
-            Log.d("contenuto",MainActivity.files[indice].toString());
-            profiloSelezionato=MainActivity.files[indice].toString();
-            MainActivity getProfiles=new MainActivity();
+            //   FileInputStream fis = new FileInputStream(files2[(indice)].toString());
+            Log.d("contenuto", MainActivity.files[indice].toString());
+            profiloSelezionato = MainActivity.files[indice].toString();
+            MainActivity getProfiles = new MainActivity();
 
-            nomeProfilo=getProfiles.getFileProfili()[indice].toString();
+            nomeProfilo = getProfiles.getFileProfili()[indice].toString();
 
             reader = new BufferedReader(
 
@@ -205,12 +205,12 @@ scripts.clear();
             // do reading, usually loop until end of file reading
             String mLine;
             while ((mLine = reader.readLine()) != null) {
-                temp = mLine.replace("[","").replace("]","").split(",");
-             //   bio=bio+mLine.replace("[","").replace("]","");
+                temp = mLine.replace("[", "").replace("]", "").split(",");
+                //   bio=bio+mLine.replace("[","").replace("]","");
 
-              //  scripts.add(mLine.replace(",", " "));
-               scripts.addAll(Arrays.asList(temp));
-Log.d("scripts",scripts.toString());
+                //  scripts.add(mLine.replace(",", " "));
+                scripts.addAll(Arrays.asList(temp));
+                Log.d("scripts", scripts.toString());
                 if (temp.length > 0) {
 
                 }
@@ -226,9 +226,8 @@ Log.d("scripts",scripts.toString());
                 }
             }
         }
-     //   Log.d("myTag", bio);
+        //   Log.d("myTag", bio);
     }
-
 
 
     public void getProfilesName() throws IOException, PackageManager.NameNotFoundException {
@@ -236,56 +235,54 @@ Log.d("scripts",scripts.toString());
         collection.clear();
         ListCollection.clear();
 
-        MainActivity getProfiles=new MainActivity();
+        MainActivity getProfiles = new MainActivity();
 
-collection.addAll(getProfiles.getProfiliList());
+        collection.addAll(getProfiles.getProfiliList());
 
         ListCollection.addAll(getProfiles.getProfiliList());
 
 //Log.d("file", collection.toString());
-   //     Log.d("file2", ListCollection.toString());
+        //     Log.d("file2", ListCollection.toString());
     }
 
 
-
-    public void  getList(List<String> lista){
+    public void getList(List<String> lista) {
         Biom.clear();
         Biom.addAll(lista);
 
     }
 
     public void Savez(View v) throws JSONException {
-if(Biom.size()!=0){
-        obj.put("Sessione", Biom);
-       Log.d("biom", Biom.get(0));
-       System.out.println(obj);
-        Log.d("menu", scripts.get(0));
-        Log.d("menu", collection.get(indiceAssoluto));
+        if (Biom.size() != 0) {
+            obj.put("Sessione", Biom);
+            Log.d("biom", Biom.get(0));
+            System.out.println(obj);
+            Log.d("menu", scripts.get(0));
+            Log.d("menu", collection.get(indiceAssoluto));
 
-        boolean isFileCreated = create(ProfileManager.this, collection.get(indiceAssoluto), obj.getString("Sessione"));
-        if(isFileCreated) {
-            Toast.makeText(getBaseContext(), "File saved successfully!",
-                    Toast.LENGTH_SHORT).show();
-            
+            boolean isFileCreated = create(ProfileManager.this, collection.get(indiceAssoluto), obj.getString("Sessione"));
+            if (isFileCreated) {
+                Toast.makeText(getBaseContext(), "File saved successfully!",
+                        Toast.LENGTH_SHORT).show();
+
+            } else {
+                //show error or try again.
+            }
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         } else {
-            //show error or try again.
+            Toast.makeText(getBaseContext(), "No changes!",
+                    Toast.LENGTH_SHORT).show();
+
         }
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-    }
-    else{
-    Toast.makeText(getBaseContext(), "No changes!",
-            Toast.LENGTH_SHORT).show();
-
-}
 
     }
 
 
-    private boolean create(Context context, String fileName, String jsonString){
+    private boolean create(Context context, String fileName, String jsonString) {
 
         try {
-            FileOutputStream fos = openFileOutput(fileName,Context.MODE_PRIVATE);
+            FileOutputStream fos = openFileOutput(fileName, Context.MODE_PRIVATE);
             if (jsonString != null) {
                 fos.write(jsonString.getBytes());
             }

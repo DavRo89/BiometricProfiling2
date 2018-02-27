@@ -26,19 +26,19 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class AddModules extends AppCompatActivity {
-    LinearLayout   destinationFrameLayout=null;
-    RelativeLayout HideCheckboxes=null;
+    LinearLayout destinationFrameLayout = null;
+    RelativeLayout HideCheckboxes = null;
     public static ArrayList<String> Classes = new ArrayList<String>();
-    private  ArrayList<String> AddClasses = new ArrayList<String>();
+    private ArrayList<String> AddClasses = new ArrayList<String>();
     private CheckBox[] checkB;
-private int counter;
+    private int counter;
     JSONObject obj = new JSONObject();
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_modules);
-        ModuleReader prova= null;
+        ModuleReader prova = null;
         try {
             prova = new ModuleReader(this);
         } catch (ClassNotFoundException e) {
@@ -46,7 +46,7 @@ private int counter;
         }
 
 
-      destinationFrameLayout = (LinearLayout) findViewById(R.id.destination_layout);
+        destinationFrameLayout = (LinearLayout) findViewById(R.id.destination_layout);
         if (savedInstanceState == null) {
             destinationFrameLayout.setVisibility(View.INVISIBLE);
             ViewTreeObserver viewTreeObserver = destinationFrameLayout.getViewTreeObserver();
@@ -67,9 +67,9 @@ private int counter;
 
         Classes.clear();
         Classes.addAll(prova.getClassesOfPackage("com."));
-         checkB=new CheckBox[Classes.size()];
+        checkB = new CheckBox[Classes.size()];
         Log.d("Classi", Classes.toString());
-        Log.d("Classi",  ""+Classes.size());
+        Log.d("Classi", "" + Classes.size());
         final LinearLayout parentLayout = (LinearLayout) findViewById(R.id.destination_layout);
         final SharedPreferences sp = getApplicationContext().getSharedPreferences("ClassiAdd", MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
@@ -78,18 +78,18 @@ private int counter;
 
             checkB[i] = new CheckBox(this);
             checkB[i].setId(i);
-            checkB[i].setText(" " +Classes.get(i));
+            checkB[i].setText(" " + Classes.get(i));
 
             parentLayout.addView(checkB[i]);
             checkB[i].setGravity(17);
 
-            edit.putString("Classi",Classes.get(i) );
+            edit.putString("Classi", Classes.get(i));
             edit.commit();
 
 
         }
-        String ProfileValue3 = (""+( sp.getString("Classi", "")));
-        Log.d("ProfiliPerAdd",ProfileValue3);
+        String ProfileValue3 = ("" + (sp.getString("Classi", "")));
+        Log.d("ProfiliPerAdd", ProfileValue3);
 
         /*
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
@@ -120,8 +120,8 @@ p.topMargin=(height/3)*2;
     }
 
     private void circularRevealTransition() {
-        int X = 9 * destinationFrameLayout.getWidth()/10; //The X coordinate for the initial position
-        int Y = 9 * destinationFrameLayout.getHeight()/10; //The Y coordinate for the initial position
+        int X = 9 * destinationFrameLayout.getWidth() / 10; //The X coordinate for the initial position
+        int Y = 9 * destinationFrameLayout.getHeight() / 10; //The Y coordinate for the initial position
         int Duration = 500;  //Duration for the animation
 
         float finalRadius = Math.max(destinationFrameLayout.getWidth(), destinationFrameLayout.getHeight()); //The final radius must be the end points of the current activity
@@ -136,76 +136,75 @@ p.topMargin=(height/3)*2;
         circularReveal.start();
     }
 
-public void AppendFile(String ClassiAdd) {
-    File myFile = new File(ProfileManager.profiloSelezionato);
+    public void AppendFile(String ClassiAdd) {
+        File myFile = new File(ProfileManager.profiloSelezionato);
 
-    if (myFile.exists()) {
-        try {
-            FileOutputStream fOut = openFileOutput(ProfileManager.profiloSelezionato.replace("/data/user/0/com.example.davide.biometricprofiling/files/",""), MODE_APPEND);
-            OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
-            myOutWriter.append(","+ClassiAdd);
-            myOutWriter.close();
-            fOut.close();
-        } catch (Exception e) {
+        if (myFile.exists()) {
+            try {
+                FileOutputStream fOut = openFileOutput(ProfileManager.profiloSelezionato.replace("/data/user/0/com.example.davide.biometricprofiling/files/", ""), MODE_APPEND);
+                OutputStreamWriter myOutWriter = new OutputStreamWriter(fOut);
+                myOutWriter.append("," + ClassiAdd);
+                myOutWriter.close();
+                fOut.close();
+            } catch (Exception e) {
+
+            }
 
         }
-
     }
-}
 
     public void Cancel(View v) {
         //reading text from file
         startActivity(new Intent(AddModules.this, ProfileManager.class));
     }
 
-        public void onClick(View v) {
+    public void onClick(View v) {
 
 
-            counter=0;
-            for(int i = 0; i < Classes.size(); i++){
-                if(checkB[i].isChecked()){
-                    counter++;
-                    Log.d("checkbox",""+checkB[i].getText().toString());
+        counter = 0;
+        for (int i = 0; i < Classes.size(); i++) {
+            if (checkB[i].isChecked()) {
+                counter++;
+                Log.d("checkbox", "" + checkB[i].getText().toString());
 
-                        AddClasses.add(checkB[i].getText().toString());
+                AddClasses.add(checkB[i].getText().toString());
 
-                    startActivity(new Intent(AddModules.this, ProfileManager.class));
-                    //  Log.d("scripts",""+ProfileManager.scripts.add(checkB[i].getText().toString()));
-
-
-                }
-            }
-            if(counter==0){
-
-                AlertDialog alertDialog = new AlertDialog.Builder(AddModules.this).create();
-                alertDialog.setTitle("Alert");
-                alertDialog.setMessage("Nessun Modulo Selezionato");
-                alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "ok",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-
-                            }
-                        });
-                alertDialog.show();
-            }
-            else{
-                try {
-                    obj.put("Moduli", AddClasses);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    AppendFile(obj.getString("Moduli"));
-                    Toast.makeText(getBaseContext(), "Modules successfully added!",
-                            Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                startActivity(new Intent(AddModules.this, ProfileManager.class));
+                //  Log.d("scripts",""+ProfileManager.scripts.add(checkB[i].getText().toString()));
 
 
             }
+        }
+        if (counter == 0) {
+
+            AlertDialog alertDialog = new AlertDialog.Builder(AddModules.this).create();
+            alertDialog.setTitle("Alert");
+            alertDialog.setMessage("Nessun Modulo Selezionato");
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "ok",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+
+                        }
+                    });
+            alertDialog.show();
+        } else {
+            try {
+                obj.put("Moduli", AddClasses);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            try {
+                AppendFile(obj.getString("Moduli"));
+                Toast.makeText(getBaseContext(), "Modules successfully added!",
+                        Toast.LENGTH_SHORT).show();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
 
         }
+
+    }
 
 }

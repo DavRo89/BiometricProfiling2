@@ -29,8 +29,6 @@ import android.support.v7.widget.helper.ItemTouchHelper;
  * Expects the <code>RecyclerView.Adapter</code> to listen for {@link
  * ItemTouchHelperAdapter} callbacks and the <code>RecyclerView.ViewHolder</code> to implement
  * {@link ItemTouchHelperViewHolder}.
- *
- *
  */
 public class SimpleItemTouchHelperCallback extends ItemTouchHelper.Callback {
 

@@ -22,12 +22,13 @@ import java.util.List;
  *
  */
 public class MainFragment extends ListFragment {
-    private  List<String> names = new ArrayList<>();
+    private List<String> names = new ArrayList<>();
     ListView lv;
     private String Profileclick;
-   private ArrayAdapter<String> adapter;
+    private ArrayAdapter<String> adapter;
     private List<String> items;
     private int posizione;
+
     public interface OnListItemClickListener {
         void onListItemClick(int position);
     }
@@ -36,8 +37,6 @@ public class MainFragment extends ListFragment {
 
     public MainFragment() {
     }
-
-
 
 
     @Override
@@ -51,58 +50,58 @@ public class MainFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.d("dentro","va");
+        Log.d("dentro", "va");
         Bundle args = getArguments();
-          names= args.getStringArrayList("nomiB");
-if(ProfileManager.menuMultipleActions!=null){
-ProfileManager.menuMultipleActions.setVisibility(View.GONE);}
-          items = names;
+        names = args.getStringArrayList("nomiB");
+        if (ProfileManager.menuMultipleActions != null) {
+            ProfileManager.menuMultipleActions.setVisibility(View.GONE);
+        }
+        items = names;
         adapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_list_item_1, items);
         setListAdapter(adapter);
-lv=getListView();
-lv.setOnCreateContextMenuListener(new AdapterView.OnCreateContextMenuListener(){
+        lv = getListView();
+        lv.setOnCreateContextMenuListener(new AdapterView.OnCreateContextMenuListener() {
 
-    @Override
-    public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
+            @Override
+            public void onCreateContextMenu(ContextMenu contextMenu, View view, ContextMenu.ContextMenuInfo contextMenuInfo) {
 
 
-            AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)contextMenuInfo;
-        contextMenu.setHeaderTitle(names.get(info.position));
-        posizione=info.position;
-        Log.d("posizione", ""+posizione);
-        Profileclick=names.get(info.position);
-            String[] menuItems = getResources().getStringArray(R.array.actions);
-            for (int i = 0; i<menuItems.length; i++) {
-                contextMenu.add(Menu.NONE, i, i, menuItems[i]);
+                AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) contextMenuInfo;
+                contextMenu.setHeaderTitle(names.get(info.position));
+                posizione = info.position;
+                Log.d("posizione", "" + posizione);
+                Profileclick = names.get(info.position);
+                String[] menuItems = getResources().getStringArray(R.array.actions);
+                for (int i = 0; i < menuItems.length; i++) {
+                    contextMenu.add(Menu.NONE, i, i, menuItems[i]);
+                }
+
             }
 
-    }
 
-
-
-
-});
+        });
 
 
     }
+
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         mItemClickListener.onListItemClick(position);
 
     }
+
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case 0:
 
                 File mydir = getContext().getFilesDir(); //get your internal directory
-               File myFile = new File(mydir.toString(), Profileclick);
+                File myFile = new File(mydir.toString(), Profileclick);
                 myFile.delete();
-                items=names;
-                lv=getListView();
-adapter.remove(adapter.getItem(posizione));
+                items = names;
+                lv = getListView();
+                adapter.remove(adapter.getItem(posizione));
                 adapter.notifyDataSetChanged();
-
 
 
                 return true;

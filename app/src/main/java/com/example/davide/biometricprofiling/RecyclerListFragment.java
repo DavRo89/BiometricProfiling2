@@ -23,9 +23,8 @@ import java.util.List;
 public class RecyclerListFragment extends Fragment implements OnStartDragListener {
 
     private ItemTouchHelper mItemTouchHelper;
-public List<String> biometricsames=new ArrayList<String>();
-    public List<String> ListaBio=new ArrayList<String>();
-
+    public List<String> biometricsames = new ArrayList<String>();
+    public List<String> ListaBio = new ArrayList<String>();
 
 
     public RecyclerListFragment() {
@@ -43,16 +42,16 @@ public List<String> biometricsames=new ArrayList<String>();
         super.onViewCreated(view, savedInstanceState);
 
         Bundle args = getArguments();
-        List<String> names= args.getStringArrayList("nomi");
+        List<String> names = args.getStringArrayList("nomi");
         RecyclerListAdapter adapter = new RecyclerListAdapter(getActivity(), this);
 
         RecyclerView recyclerView = (RecyclerView) view;
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-adapter.setListItems(names);
+        adapter.setListItems(names);
 
-ListaBio.addAll(adapter.getItems());
+        ListaBio.addAll(adapter.getItems());
 
 
         ItemTouchHelper.Callback callback = new SimpleItemTouchHelperCallback(adapter);
@@ -66,9 +65,7 @@ ListaBio.addAll(adapter.getItems());
         mItemTouchHelper.startDrag(viewHolder);
 
 
-
     }
-
 
 
 }
