@@ -1,24 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/contenitore"
+        android:gravity="bottom"
+       >
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
                   android:id="@+id/destination_layout"
                   android:layout_width="fill_parent"
                   android:layout_height="fill_parent"
-                  android:background="#FFC107"
-                  xmlns:app="http://schemas.android.com/apk/res-auto"
+                  android:background="@drawable/test3"
                   android:orientation="vertical"
 
 >
 
     <!-- The actual layout for the destination Activity Goes here -->
 
-        <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
+
+        <TextView
+                android:id="@+id/textInstrunctions"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="?attr/colorPrimary"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+                android:layout_height="wrap_content"
+                android:text="Select what modules to add"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:typeface="normal"
+        android:gravity="center"
+        />
+        <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginBottom="1dp"
+                android:background="#DADADC" android:id="@+id/view">
 
+        </View>
+    </LinearLayout>
+    <Button
+            android:text="Add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/buttonAdd"
+            android:layout_above="@+id/buttonCancel"
 
-</LinearLayout>
+            android:onClick="onClick"/>
+    <Button
+            android:text="Cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:id="@+id/buttonCancel"
+            android:layout_alignBottom="@+id/destination_layout"
+
+            android:onClick="Cancel"/>
+
+</RelativeLayout>

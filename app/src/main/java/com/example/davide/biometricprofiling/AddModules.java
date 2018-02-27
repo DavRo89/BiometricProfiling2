@@ -71,7 +71,6 @@ private int counter;
         Log.d("Classi", Classes.toString());
         Log.d("Classi",  ""+Classes.size());
         final LinearLayout parentLayout = (LinearLayout) findViewById(R.id.destination_layout);
-
         final SharedPreferences sp = getApplicationContext().getSharedPreferences("ClassiAdd", MODE_PRIVATE);
         SharedPreferences.Editor edit = sp.edit();
         for (int i = 0; i < Classes.size(); i++) {
@@ -91,6 +90,8 @@ private int counter;
         }
         String ProfileValue3 = (""+( sp.getString("Classi", "")));
         Log.d("ProfiliPerAdd",ProfileValue3);
+
+        /*
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
@@ -112,6 +113,9 @@ p.topMargin=(height/3)*2;
 
         parentLayout.addView(buttonView, p);
 
+
+
+*/
 
     }
 
@@ -149,7 +153,11 @@ public void AppendFile(String ClassiAdd) {
     }
 }
 
-    private View.OnClickListener mThisButtonListener = new View.OnClickListener() {
+    public void Cancel(View v) {
+        //reading text from file
+        startActivity(new Intent(AddModules.this, ProfileManager.class));
+    }
+
         public void onClick(View v) {
 
 
@@ -199,5 +207,5 @@ public void AppendFile(String ClassiAdd) {
             }
 
         }
-    };
+
 }

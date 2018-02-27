@@ -102,8 +102,19 @@ public static String profiloSelezionato;
       //  FloatingActionButton btn = (FloatingActionButton) findViewById(R.id.floatingActionButton3);
        // btn.setImageIcon(R.drawable.ic_add_circle_outline_black_24dp);
         setContentView(R.layout.activity_profile_manager);
-        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+        Toolbar  toolbar = (Toolbar) findViewById(R.id.toolbar); // Attaching the layout to the toolbar object
+        setSupportActionBar(toolbar);
 
+        // enabling action bar app icon and behaving it as toggle button
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+    @Override
+    public void onClick(View v) {
+        startActivity(new Intent(ProfileManager.this, MainActivity.class));
+    }
+
+});
     }
 
     @Override
