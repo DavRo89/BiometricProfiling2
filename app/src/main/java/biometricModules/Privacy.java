@@ -25,6 +25,8 @@ public class Privacy extends AppCompatActivity implements Recognizable  {
         this.sContext=context;
     }
     public Privacy(Activity activity) throws ClassNotFoundException {
+
+
         this.sActivity=activity;
     }
     @Override
@@ -41,7 +43,7 @@ public class Privacy extends AppCompatActivity implements Recognizable  {
 
 
     private void Privacy(){
-        AlertDialog alertDialog = new AlertDialog.Builder(sActivity).create();
+        AlertDialog alertDialog = new AlertDialog.Builder(sContext).create();
         alertDialog.setTitle("Alert");
         alertDialog.setMessage("Informativa sulla privacy");
         alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "NON ACCETTO",

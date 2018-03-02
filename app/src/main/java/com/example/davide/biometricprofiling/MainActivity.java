@@ -2,6 +2,7 @@ package com.example.davide.biometricprofiling;
 
 import android.app.Activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
@@ -236,7 +237,8 @@ public class MainActivity extends AppCompatActivity {
 
         Class<?> c = Class.forName(stringaN);
         Log.d("classesss", c.toString());
-        Constructor<?> cons = c.getConstructor(Activity.class);
+     //   Constructor<?> cons = c.getConstructor(Activity.class);
+        Constructor<?> cons = c.getConstructor(Context.class);
         Object classe = cons.newInstance(MainActivity.this);
         Method method = c.getDeclaredMethod("exec", null);
         method.invoke(classe, null);
